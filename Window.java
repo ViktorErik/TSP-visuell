@@ -8,9 +8,6 @@ class Window extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new DimensionUIResource(WIDTH, HEIGHT));
 
-        // this.getContentPane().setBackground(new Color(0, 0, 0, 255)); // rgba
-        // draw = new Draw();
-        // this.add(draw);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
      }

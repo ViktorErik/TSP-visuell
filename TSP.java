@@ -1,25 +1,40 @@
-import java.util.ArrayList;
+import java.util.List;
 
 class TSP {
     
     static int minDistance = Integer.MAX_VALUE;
     static int absDistance = 0;
-    static ArrayList<Node> bestPath;
+    static Node[] bestPath = new Node[Main.NUMOFNODES];
+    static double count = 0;
+    static double combinations = factorial(Main.NUMOFNODES - 1);
+    static double percentage;
+    static Node[] attemptedPath = new Node[Main.NUMOFNODES];
+
+    static int factorial(int n) {
+        if (n <= 1) return 1;
+        return n * factorial(n - 1);
+    }
     
-    static void solveRecursively(Node[] nodes, ArrayList<Node> path, Node curNode, int curDistance) {
-        if (path.size() >= nodes.length) {
+    static void solveRecursively(Node[] nodes, List<Node> path, Node curNode, int curDistance) {
+        if (path.size() >= Main.NUMOFNODES) {
             if (curDistance < minDistance) {
-                bestPath = new ArrayList<>(path);
-                minDistance = curDistance;
-             
+                for (int i = 0; i < Main.NUMOFNODES; i++) {
+                    bestPath[i] = path.get(i);
+                }
+                minDistance = curDistance;             
             }
-            for (int i = 0; i < nodes.length; i++) {
-                nodes[i] = TSP.bestPath.get(i);
-                // nodes[i] = path.get(i);
+
+
+            count++;
+            percentage = count / combinations * 100;
+            // System.out.println((double) Math.round(percentage * 100) / 100 + "% KLAR");
+
+
+            for (int i = 0; i < Main.NUMOFNODES; i++) {
+                attemptedPath[i] = path.get(i);
             }
-            // Main.window.add(draw);
-            Main.window.revalidate();
-            Main.window.repaint(); 
+
+           
 
             return;
         }

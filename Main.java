@@ -1,10 +1,11 @@
 import java.util.Random;
+import java.util.List;
 import java.util.ArrayList;
 
 class Main extends Thread {
 
      
-    static int NUMOFNODES = 10;
+    static int NUMOFNODES = 12;
     static Node[] nodes = new Node[NUMOFNODES];
     static Window window;
     static Draw draw;
@@ -28,9 +29,9 @@ class Main extends Thread {
             }
         }
 
-        ArrayList<Node> shortestPath = new ArrayList<>();
-        shortestPath.add(nodes[0]);
-        TSP.solveRecursively(nodes, shortestPath, nodes[0], 0); 
+        List<Node> path = new ArrayList<Node>();
+        path.add(nodes[0]);
+        TSP.solveRecursively(nodes, path, nodes[0], 0); 
         
     }
 }
