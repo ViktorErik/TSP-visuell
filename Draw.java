@@ -15,24 +15,26 @@ class Draw extends JPanel {
 
         setBackground(Color.BLACK);
 
+        if (Main.attemptedPath[Main.attemptedPath.length-1] == null || Main.bestPath[Main.bestPath.length-1] == null) return;
+
         g2d.setColor(Color.RED);
         for (int i = 0; i < Main.NUMOFNODES - 1; i++) {
             
-                g2d.drawLine(
-                    TSP.attemptedPath[i].x + NODERADIUS, TSP.attemptedPath[i].y + NODERADIUS, 
-                    TSP.attemptedPath[i+1].x + NODERADIUS, TSP.attemptedPath[i+1].y + NODERADIUS
-                );  
+            g2d.drawLine(
+                Main.attemptedPath[i].x + NODERADIUS, Main.attemptedPath[i].y + NODERADIUS, 
+                Main.attemptedPath[i+1].x + NODERADIUS, Main.attemptedPath[i+1].y + NODERADIUS
+            ); 
+             
         }
 
         g2d.setColor(Color.GREEN);
         for (int i = 0; i < Main.NUMOFNODES - 1; i++) {
-            
-                g2d.drawLine(
-                    TSP.bestPath[i].x + NODERADIUS, TSP.bestPath[i].y + NODERADIUS, 
-                    TSP.bestPath[i+1].x + NODERADIUS, TSP.bestPath[i+1].y + NODERADIUS
-                );  
+            g2d.drawLine(
+                Main.bestPath[i].x + NODERADIUS, Main.bestPath[i].y + NODERADIUS, 
+                Main.bestPath[i+1].x + NODERADIUS, Main.bestPath[i+1].y + NODERADIUS
+            );  
         }
-                
+           
         
         g2d.setColor(Color.WHITE);
         for (int i = 0; i < Main.NUMOFNODES; i++) {
@@ -45,7 +47,17 @@ class Draw extends JPanel {
             g2d.fillOval(Main.nodes[i].x, Main.nodes[i].y, NODERADIUS*2, NODERADIUS*2);
         
         }
+        
         Main.window.revalidate();
-        Main.window.repaint();      
+        Main.window.repaint();   
+         
+        /* 
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        */
     }
 } 

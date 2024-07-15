@@ -2,11 +2,13 @@ import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 
-class Main extends Thread {
+class Main {
 
      
-    static int NUMOFNODES = 12;
+    static int NUMOFNODES = 18;
     static Node[] nodes = new Node[NUMOFNODES];
+    static Node[] bestPath = new Node[NUMOFNODES];
+    static Node[] attemptedPath = new Node[Main.NUMOFNODES];
     static Window window;
     static Draw draw;
 
@@ -28,10 +30,15 @@ class Main extends Thread {
                 nodes[i].addNeighbor(nodes[j]);
             }
         }
+        Main.attemptedPath = nodes.clone();
+        Main.bestPath = nodes.clone();
 
         List<Node> path = new ArrayList<Node>();
         path.add(nodes[0]);
-        TSP.solveRecursively(nodes, path, nodes[0], 0); 
+
+        
+        // RecursiveSolution.solveRecursively(nodes, path, nodes[0], 0); 
+        GeneticAlgorithmSolution.geneticAlgorithmSolve(nodes);
         
     }
 }

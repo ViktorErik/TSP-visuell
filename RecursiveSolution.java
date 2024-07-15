@@ -1,14 +1,12 @@
 import java.util.List;
 
-class TSP {
+class RecursiveSolution {
     
     static int minDistance = Integer.MAX_VALUE;
     static int absDistance = 0;
-    static Node[] bestPath = new Node[Main.NUMOFNODES];
     static double count = 0;
     static double combinations = factorial(Main.NUMOFNODES - 1);
     static double percentage;
-    static Node[] attemptedPath = new Node[Main.NUMOFNODES];
 
     static int factorial(int n) {
         if (n <= 1) return 1;
@@ -16,10 +14,10 @@ class TSP {
     }
     
     static void solveRecursively(Node[] nodes, List<Node> path, Node curNode, int curDistance) {
-        if (path.size() >= Main.NUMOFNODES) {
+        if (path.size() == Main.NUMOFNODES) {
             if (curDistance < minDistance) {
                 for (int i = 0; i < Main.NUMOFNODES; i++) {
-                    bestPath[i] = path.get(i);
+                    Main.bestPath[i] = path.get(i);
                 }
                 minDistance = curDistance;             
             }
@@ -28,13 +26,10 @@ class TSP {
             count++;
             percentage = count / combinations * 100;
             // System.out.println((double) Math.round(percentage * 100) / 100 + "% KLAR");
-
-
+ 
             for (int i = 0; i < Main.NUMOFNODES; i++) {
-                attemptedPath[i] = path.get(i);
+                Main.attemptedPath[i] = path.get(i);
             }
-
-           
 
             return;
         }
@@ -42,10 +37,10 @@ class TSP {
             if (!path.contains(neighbor)) {
                 
                 path.add(neighbor);
-                absDistance =   (int) Math.sqrt((
+                absDistance =   (int) Math.sqrt(
                                       Math.pow(curNode.x - neighbor.x, 2) + 
                                       Math.pow(curNode.y - neighbor.y, 2)
-                                                ));
+                                                );
                 curDistance += absDistance;
                 solveRecursively(nodes, path, neighbor, curDistance);
                 absDistance =   (int) Math.sqrt((
@@ -53,6 +48,7 @@ class TSP {
                                       Math.pow(curNode.y - neighbor.y, 2)
                                                 ));
                 curDistance -= absDistance;
+
                 path.remove(path.size() - 1);
             }
         }
