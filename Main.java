@@ -5,10 +5,10 @@ import java.util.ArrayList;
 class Main {
 
      
-    static int NUMOFNODES = 18;
+    static int NUMOFNODES = 14;
     static Node[] nodes = new Node[NUMOFNODES];
     static Node[] bestPath = new Node[NUMOFNODES];
-    static Node[] attemptedPath = new Node[Main.NUMOFNODES];
+    static Node[] attemptedPath = new Node[NUMOFNODES];
     static Window window;
     static Draw draw;
 
@@ -30,8 +30,8 @@ class Main {
                 nodes[i].addNeighbor(nodes[j]);
             }
         }
-        Main.attemptedPath = nodes.clone();
-        Main.bestPath = nodes.clone();
+        attemptedPath = nodes.clone();
+        bestPath = nodes.clone();
 
         List<Node> path = new ArrayList<Node>();
         path.add(nodes[0]);
